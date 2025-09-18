@@ -183,7 +183,7 @@ public class EarthElementForgemaster extends ElfForgemaster {
 // 使用範例
 public class FactoryPatternExample {
     public static void main(String[] args) {
-        System.out.println("=== 歡迎來到精靈王國的魔法工坊 ===\n");
+        System.out.println("=== 歡迎來到精靈王國的魔法工坊 ===");
 
         // 創建不同的精靈鑄造師
         ElfForgemaster fireForgemaster = new FireElementForgemaster();
@@ -355,7 +355,7 @@ class ElfForgemaster {
 
   finalizeWeapon(weapon) {
     console.log(`為 ${weapon.getType()} 加上精靈祝福`);
-    console.log("武器鍛造完成！\n");
+    console.log("武器鍛造完成！");
   }
 }
 
@@ -384,7 +384,7 @@ class EarthElementForgemaster extends ElfForgemaster {
 }
 
 // 使用範例
-console.log("=== 歡迎來到精靈王國的魔法工坊 ===\n");
+console.log("=== 歡迎來到精靈王國的魔法工坊 ===");
 
 // 創建不同的精靈鑄造師
 const fireForgemaster = new FireElementForgemaster();
@@ -450,6 +450,10 @@ testWeapon(earthStaff);
 
 Factory Pattern（工廠模式）就像我們故事中的嚴謹精靈鑄造師，透過抽象工廠類別將物件創建的責任委託給子類別
 
+- 精靈鑄造師 使用模板方法 `forgeWeapon()`
+- `forgeWeapon()` 之中使用了工廠方法 `createMagicWeapon()` 來製造武器
+- 不同的元素精靈鑄造師 會實作各自的 `createMagicWeapon()` 方法(達成客製化的需求~)
+
 **核心特點：**
 
 - **委託創建**：抽象工廠定義創建介面，具體工廠負責實際創建
@@ -468,14 +472,11 @@ Factory Pattern（工廠模式）就像我們故事中的嚴謹精靈鑄造師�
 
 **使用時機：**
 
-- 需要創建一系列相關產品（ex: 不同平台的 UI 組件）
 - 希望將物件創建邏輯與使用邏輯完全分離
-- 需要在運行時決定創建哪個具體類別的實例
 - 系統需要高度的可擴展性和維護性
 
 **注意事項：**
 
 - 增加了系統的複雜度，需要更多的類別和介面
 - 適合產品變化較多且需要經常擴展的場景
-- 可與其他模式結合使用（如模板方法、策略模式等）
 - 在簡單場景中可能過度設計，應根據實際需求選擇

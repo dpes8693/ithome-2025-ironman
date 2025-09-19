@@ -516,7 +516,7 @@ class DwarvenEquipmentFactory {
     );
 
     // 測試套裝
-    console.log("\n=== 套裝測試 ===");
+    console.log("=== 套裝測試 ===");
     weapon.attack();
     armor.defend();
     accessory.enhance();
@@ -589,7 +589,7 @@ function demonstrateClientUsage() {
 }
 
 // 使用範例
-console.log("=== 歡迎來到矮人宗師的裝備工坊 ===\n");
+console.log("=== 歡迎來到矮人宗師的裝備工坊 ===");
 
 try {
   // 創建戰士套裝
@@ -649,7 +649,7 @@ try {
 
 ## 小總結
 
-Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老矮人宗師，提供創建一系列相關產品族的介面
+Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老矮人宗師，提供創建一系列相關產品家族的介面
 
 **核心特點：**
 
@@ -658,7 +658,7 @@ Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老�
 - **多重抽象**：多個產品類型都有抽象介面
 - **工廠抽象化**：工廠本身也是抽象的，由具體工廠實現
 
-## 🏭 三種工廠模式比較
+## 三種工廠模式比較
 
 | 特徵         | Simple Factory   | Factory Pattern  | Abstract Factory Pattern   |
 | ------------ | ---------------- | ---------------- | -------------------------- |
@@ -666,11 +666,11 @@ Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老�
 | **產品數量** | 一個             | 一個             | 多個相關產品               |
 | **工廠結構** | 靜態方法         | 抽象類別+子類別  | 抽象工廠+具體工廠          |
 | **擴展方式** | 修改工廠方法     | 新增工廠子類別   | 新增整個工廠實現           |
-| **開放封閉** | ❌ 不符合        | ✅ 符合          | ✅ 符合                    |
+| **開放封閉** | ❌               | ✅               | ✅                         |
 | **複雜度**   | 🟢 簡單          | 🟡 中等          | 🔴 複雜                    |
 | **使用場景** | 產品類型少且固定 | 單一產品多變化   | 多產品需保持一致性         |
 
-### 🎯 使用時機對照
+### 使用時機對照
 
 #### Simple Factory 適用於
 
@@ -693,32 +693,7 @@ Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老�
 - 系統需要在多個產品族之間切換
 - **範例**：不同風格的 UI 主題、跨平台應用程式
 
-### 🚀 進階考量
-
-**效能影響：**
-
-- Simple Factory：最輕量，直接創建
-- Factory Pattern：中等，需要繼承結構
-- Abstract Factory：最重，多層抽象
-
-**維護性：**
-
-- Simple Factory：集中但易違反開放封閉原則
-- Factory Pattern：分散職責，易於維護
-- Abstract Factory：最佳分離，但類別數量最多
-
-**學習曲線：**
-
-- Simple Factory：容易理解和實現
-- Factory Pattern：需要理解抽象和繼承
-- Abstract Factory：需要理解複雜的抽象結構
-
 ### 💡 選擇建議
-
-1. **從簡單開始**：優先考慮 Simple Factory
-2. **需求驅動**：當 Simple Factory 不足時再升級
-3. **預見未來**：如果確定會有複雜需求，直接選擇適當模式
-4. **團隊能力**：考慮團隊對設計模式的理解程度
 
 **決策樹：**
 
@@ -729,5 +704,3 @@ Abstract Factory Pattern（抽象工廠模式）就像我們故事中的古老�
 │  └─ 需要複雜流程？ → Factory Pattern
 └─ 需要多個相關產品？ → Abstract Factory Pattern
 ```
-
-**古老矮人宗師的智慧**：「一套完整的裝備，才能成就真正的勇士。選擇合適的工廠模式，就如同選擇合適的工具，簡單的任務不需要複雜的設備。」

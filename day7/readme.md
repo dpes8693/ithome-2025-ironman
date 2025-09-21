@@ -399,7 +399,7 @@ const basicFireball = new BasicFireball();
 console.log(`法術: ${basicFireball.getDescription()}`);
 console.log(`威力: ${basicFireball.getPower()}`);
 basicFireball.cast();
-console.log();
+console.log("");
 
 // 為火球術添加追蹤效果
 console.log("--- 魔法師開始施展裝飾魔法 ---");
@@ -407,7 +407,7 @@ const trackingFireball = new TrackingEnhancement(basicFireball);
 console.log(`法術: ${trackingFireball.getDescription()}`);
 console.log(`威力: ${trackingFireball.getPower()}`);
 trackingFireball.cast();
-console.log();
+console.log("");
 
 // 為火球術添加追蹤和火焰附魔雙重效果
 const superFireball = new FireEnchantment(
@@ -416,7 +416,7 @@ const superFireball = new FireEnchantment(
 console.log(`法術: ${superFireball.getDescription()}`);
 console.log(`威力: ${superFireball.getPower()}`);
 superFireball.cast();
-console.log();
+console.log("");
 
 // 為防護盾添加反彈效果
 console.log("--- 防護盾強化展示 ---");
@@ -425,7 +425,7 @@ const reflectShield = new ReflectEnhancement(basicShield);
 console.log(`法術: ${reflectShield.getDescription()}`);
 console.log(`威力: ${reflectShield.getPower()}`);
 reflectShield.cast();
-console.log();
+console.log("");
 
 // 終極組合：火焰追蹤反彈防護盾
 const ultimateShield = new ReflectEnhancement(
@@ -476,22 +476,28 @@ ultimateShield.cast();
 
 Decorator 設計模式就像我們故事中的華麗魔法師，透過`動態附加功能`來增強現有物件的能力
 
+- 招式
+  - 基礎火球術 50
+  - 基礎防護盾 30
+- 附加能力
+  - 追蹤強化 +20
+  - 火焰附魔 +30
+  - 反彈強化 +25
+
 **核心特點：**
 
-- **動態擴展**：在執行時期動態地為物件添加新功能
+- **動態擴展**：在執行時期`動態地`為物件添加新功能
 - **保持介面一致**：裝飾後的物件仍然符合原始介面
-- **組合優於繼承**：透過物件組合而非繼承來擴展功能
-- **靈活堆疊**：可以多層裝飾，創造出豐富的功能組合
+- **組合優於繼承**：透過物件`組合`而非繼承來擴展功能
+- **靈活堆疊**：可以`多層裝飾`，創造出豐富的功能組合
 
 **使用時機：**
 
-- 需要在不修改現有程式碼的情況下擴展功能（ex: UI 元件添加邊框、陰影效果）
-- 想要動態地組合多種功能（ex: 咖啡店的飲品加料系統）
+- 想要動態地組合多種功能（ex: 飲料店的加料系統）
 - 避免產生大量的子類別來應對功能組合（ex: 文字處理器的格式設定）
 
 **注意事項：**
 
-- 可能會產生大量的小物件，增加系統複雜度
 - 裝飾鏈過長時可能影響效能和除錯難度
 - 需要確保所有裝飾器都正確實作介面
 - 適合功能相對獨立且可任意組合的場景

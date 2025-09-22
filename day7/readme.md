@@ -1,6 +1,6 @@
 # Day7 裝飾模式 (Decorator Pattern)
 
-## 擬人化角色：【華麗的魔法師
+## 擬人化角色：【華麗的魔法師】
 
 ![](https://raw.githubusercontent.com/dpes8693/ithome-2025-ironman/refs/heads/main/gemini-img/6-Decorator.png)
 

@@ -158,7 +158,7 @@ public class ObserverExample {
         actor.releaseStatement("我將主演新的超級英雄電影");
         actor.attendEvent("電影首映會");
 
-        System.out.println("=== 記者調整關注對象 ===");
+        System.out.println("\n=== 記者調整關注對象 ===");
         // 記者取消/新增關注
         popStar.removeObserver(reporter1);
         popStar.addObserver(reporter3);
@@ -319,7 +319,7 @@ class Celebrity extends Subject {
     });
   }
 
-  // 明星活動方法
+  // 明星活動
   postSocialMedia(content) {
     this.notifyObservers(`在社群媒體發文: ${content}`);
   }
@@ -371,7 +371,7 @@ popStar.attendEvent("金曲獎頒獎典禮");
 actor.releaseStatement("我將主演新的超級英雄電影");
 actor.attendEvent("電影首映會");
 
-console.log("=== 記者調整關注對象 ===");
+console.log("\n=== 記者調整關注對象 ===");
 // 記者取消/新增關注
 popStar.removeObserver(reporter1);
 popStar.addObserver(reporter3);
@@ -472,6 +472,5 @@ Observer 設計模式就像我們故事中的敏銳八卦記者，建立了一�
 
 - 觀察者數量過多可能影響通知效能
 - 如果觀察者的 update 方法執行時間過長，會阻塞通知流程
-- 需要注意記憶體洩漏問題，確保不再使用的觀察者能被正確移除
 - 通知順序可能影響結果，需要謹慎設計
 - 可以考慮使用非同步通知來提高效能

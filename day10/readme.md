@@ -179,11 +179,6 @@ public class AdapterPatternExample {
 
         System.out.println("\n" + "=".repeat(50) + "\n");
 
-        System.out.println("測試案例 3：直接使用古老讀取器");
-        System.out.println("古老讀取器獨立運作：");
-        ancientReader.readRunicText("⟨神秘符文⟩∶⟨強大力量⟩");
-        System.out.println("獲得智慧：" + ancientReader.getAncientWisdom());
-
         /**output
         === 歡迎來到古今融合的智慧殿堂 ===
 
@@ -221,13 +216,6 @@ public class AdapterPatternExample {
         分析結果：{"wisdom": "古老智慧：⟨〈SPELL〉∶〈火球術〉◦〈POWER〉∶100◦〈神諭〉∶〈元素精華〉⟩","source": "ancient_scroll","processed_by": "mechanical_oracle"}
 
         ==================================================
-
-        測試案例 3：直接使用古老讀取器
-        古老讀取器獨立運作：
-        古老卷軸讀取器：解析符文...
-        符文內容：⟨神秘符文⟩∶⟨強大力量⟩
-        解析完成：古老智慧：⟨神秘符文⟩∶⟨強大力量⟩
-        獲得智慧：古老智慧：⟨神秘符文⟩∶⟨強大力量⟩
         */
     }
 }
@@ -385,11 +373,6 @@ dataCenter.analyzeData("魔法咒語", magicData);
 
 console.log("\n" + "=".repeat(50) + "\n");
 
-console.log("測試案例 3：直接使用古老讀取器");
-console.log("古老讀取器獨立運作：");
-ancientReader.readRunicText("⟨神秘符文⟩∶⟨強大力量⟩");
-console.log(`獲得智慧：${ancientReader.getAncientWisdom()}`);
-
 /** output
 === 歡迎來到古今融合的智慧殿堂 ===
 
@@ -430,12 +413,6 @@ console.log(`獲得智慧：${ancientReader.getAncientWisdom()}`);
 
 ==================================================
 
-測試案例 3：直接使用古老讀取器
-古老讀取器獨立運作：
-古老卷軸讀取器：解析符文...
-符文內容：⟨神秘符文⟩∶⟨強大力量⟩
-解析完成：古老智慧：⟨神秘符文⟩∶⟨強大力量⟩
-獲得智慧：古老智慧：⟨神秘符文⟩∶⟨強大力量⟩
  */
 ```
 

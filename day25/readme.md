@@ -238,7 +238,7 @@ public class ValueAppraiser implements Appraiser {
             value *= 2;
         }
         totalValue += value;
-        
+
         System.out.println("=== 價值鑑定：矮人工匠 ===");
         System.out.println("姓名: " + craftsman.getName());
         System.out.println("工藝等級: " + craftsman.getCraftingLevel());
@@ -339,7 +339,7 @@ public class QualityAppraiser implements Appraiser {
     public void appraise(DwarfCraftsman craftsman) {
         itemsAppraised++;
         String quality = evaluateCraftsmanQuality(craftsman);
-        
+
         System.out.println("=== 品質鑑定：矮人工匠 ===");
         System.out.println("姓名: " + craftsman.getName());
         System.out.println("技藝品質: " + quality);
@@ -351,7 +351,7 @@ public class QualityAppraiser implements Appraiser {
     public void appraise(MagicCrystal crystal) {
         itemsAppraised++;
         String quality = evaluateCrystalQuality(crystal);
-        
+
         System.out.println("=== 品質鑑定：魔法水晶 ===");
         System.out.println("名稱: " + crystal.getName());
         System.out.println("品質等級: " + quality);
@@ -364,7 +364,7 @@ public class QualityAppraiser implements Appraiser {
     public void appraise(RarePlant plant) {
         itemsAppraised++;
         String quality = evaluatePlantQuality(plant);
-        
+
         System.out.println("=== 品質鑑定：珍稀植物 ===");
         System.out.println("名稱: " + plant.getName());
         System.out.println("品質等級: " + quality);
@@ -377,7 +377,7 @@ public class QualityAppraiser implements Appraiser {
     public void appraise(EnchantedWeapon weapon) {
         itemsAppraised++;
         String quality = evaluateWeaponQuality(weapon);
-        
+
         System.out.println("=== 品質鑑定：附魔武器 ===");
         System.out.println("名稱: " + weapon.getName());
         System.out.println("品質等級: " + quality);
@@ -569,158 +569,6 @@ public class VisitorPatternExample {
         System.out.println("=== 鑑定完成 ===");
         System.out.println("感謝世界巡遊鑑定師的專業服務！");
 
-        /**output
-        === 歡迎來到世界巡遊鑑定師的魔法市集 ===
-
-        新商品入場: 鋼鬍巴林
-        新商品入場: 銅斧索林
-        新商品入場: 暴風之眼
-        新商品入場: 微光石
-        新商品入場: 千年血蓮
-        新商品入場: 月光草
-        新商品入場: 烈焰之劍
-        新商品入場: 冰霜匕首
-
-        === 奇蹟商會 市集資訊 ===
-        目前商品數量: 8
-        1. 鋼鬍巴林
-        2. 銅斧索林
-        3. 暴風之眼
-        4. 微光石
-        5. 千年血蓮
-        6. 月光草
-        7. 烈焰之劍
-        8. 冰霜匕首
-
-        ========================================
-        第一輪：價值鑑定
-        ========================================
-        === 歡迎鑑定師來到 奇蹟商會 ===
-        開始鑑定市集中的所有物品...
-
-        === 價值鑑定：矮人工匠 ===
-        姓名: 鋼鬍巴林
-        工藝等級: 12
-        專精: 傳奇工藝
-        經驗年數: 150
-        鑑定價值: 30000 金幣
-
-        === 價值鑑定：矮人工匠 ===
-        姓名: 銅斧索林
-        工藝等級: 8
-        專精: 普通工藝
-        經驗年數: 80
-        鑑定價值: 4800 金幣
-
-        === 價值鑑定：魔法水晶 ===
-        名稱: 暴風之眼
-        類型: 風系水晶
-        魔力值: 85
-        稀有度: 傳說
-        是否附魔: 是
-        鑑定價值: 12750 金幣
-
-        === 價值鑑定：魔法水晶 ===
-        名稱: 微光石
-        類型: 光系水晶
-        魔力值: 45
-        稀有度: 稀有
-        是否附魔: 否
-        鑑定價值: 1350 金幣
-
-        === 價值鑑定：珍稀植物 ===
-        名稱: 千年血蓮
-        品種: 蓮花科
-        藥用價值: 90
-        棲息地: 深淵
-        生長時間: 1000 年
-        鑑定價值: 10800 金幣
-
-        === 價值鑑定：珍稀植物 ===
-        名稱: 月光草
-        品種: 草本科
-        藥用價值: 35
-        棲息地: 森林
-        生長時間: 10 年
-        鑑定價值: 700 金幣
-
-        === 價值鑑定：附魔武器 ===
-        名稱: 烈焰之劍
-        類型: 長劍
-        攻擊力: 95
-        附魔效果: 火焰傷害+30
-        耐久度: 85
-        鑑定價值: 9390 金幣
-
-        === 價值鑑定：附魔武器 ===
-        名稱: 冰霜匕首
-        類型: 匕首
-        攻擊力: 60
-        附魔效果: 冰霜減速
-        耐久度: 70
-        鑑定價值: 6140 金幣
-
-        === 黃金眼商人 的鑑定總結 ===
-        總估值: 75930 金幣
-
-        ========================================
-        第二輪：品質鑑定
-        ========================================
-        === 歡迎鑑定師來到 奇蹟商會 ===
-        開始鑑定市集中的所有物品...
-
-        === 品質鑑定：矮人工匠 ===
-        姓名: 鋼鬍巴林
-        技藝品質: 大師級
-        推薦用途: 皇室御用工匠
-
-        === 品質鑑定：矮人工匠 ===
-        姓名: 銅斧索林
-        技藝品質: 專家級
-        推薦用途: 城鎮工坊負責人
-
-        === 品質鑑定：魔法水晶 ===
-        名稱: 暴風之眼
-        品質等級: 完美品質
-        建議用途: 高階法杖核心
-        安全性評估: 需要專業防護
-
-        === 品質鑑定：魔法水晶 ===
-        名稱: 微光石
-        品質等級: 良好品質
-        建議用途: 魔法裝備強化材料
-        安全性評估: 相對安全
-
-        === 品質鑑定：珍稀植物 ===
-        名稱: 千年血蓮
-        品質等級: 頂級品質
-        最佳採收期: 滿月之夜
-        保存建議: 陰涼乾燥處保存，避免陽光直射
-
-        === 品質鑑定：珍稀植物 ===
-        名稱: 月光草
-        品質等級: 初級品質
-        最佳採收期: 滿月之夜
-        保存建議: 陰涼乾燥處保存，避免陽光直射
-
-        === 品質鑑定：附魔武器 ===
-        名稱: 烈焰之劍
-        品質等級: 傳說品質
-        戰鬥效能: 極高
-        維護建議: 定期保養即可
-
-        === 品質鑑定：附魔武器 ===
-        名稱: 冰霜匕首
-        品質等級: 稀有品質
-        戰鬥效能: 中等
-        維護建議: 定期保養即可
-
-        === 品質大師 的鑑定總結 ===
-        已鑑定物品數量: 8
-
-        === 鑑定完成 ===
-        感謝世界巡遊鑑定師的專業服務！
-        */
     }
 }
 ```
@@ -882,30 +730,32 @@ class ValueAppraiser {
   }
 
   appraiseCraftsman(craftsman) {
-    let value = craftsman.getCraftingLevel() * 100 + craftsman.getYearsOfExperience() * 50;
+    let value =
+      craftsman.getCraftingLevel() * 100 +
+      craftsman.getYearsOfExperience() * 50;
     if (craftsman.getSpecialty() === "傳奇工藝") {
       value *= 2;
     }
     this.totalValue += value;
-    
+
     console.log("=== 價值鑑定：矮人工匠 ===");
     console.log(`姓名: ${craftsman.getName()}`);
     console.log(`工藝等級: ${craftsman.getCraftingLevel()}`);
     console.log(`專精: ${craftsman.getSpecialty()}`);
     console.log(`經驗年數: ${craftsman.getYearsOfExperience()}`);
     console.log(`鑑定價值: ${value} 金幣`);
-    console.log();
+    console.log("");
   }
 
   appraiseCrystal(crystal) {
     let value = crystal.getMagicPower() * 10;
     const rarityMultiplier = {
-      "普通": 1,
-      "稀有": 3,
-      "史詩": 5,
-      "傳說": 10
+      普通: 1,
+      稀有: 3,
+      史詩: 5,
+      傳說: 10,
     };
-    value *= (rarityMultiplier[crystal.getRarity()] || 1);
+    value *= rarityMultiplier[crystal.getRarity()] || 1;
     if (crystal.getIsEnchanted()) {
       value *= 1.5;
     }
@@ -918,7 +768,7 @@ class ValueAppraiser {
     console.log(`稀有度: ${crystal.getRarity()}`);
     console.log(`是否附魔: ${crystal.getIsEnchanted() ? "是" : "否"}`);
     console.log(`鑑定價值: ${Math.floor(value)} 金幣`);
-    console.log();
+    console.log("");
   }
 
   appraisePlant(plant) {
@@ -938,12 +788,15 @@ class ValueAppraiser {
     console.log(`棲息地: ${plant.getHabitat()}`);
     console.log(`生長時間: ${plant.getGrowthTime()} 年`);
     console.log(`鑑定價值: ${value} 金幣`);
-    console.log();
+    console.log("");
   }
 
   appraiseWeapon(weapon) {
     let value = weapon.getDamage() * 50 + weapon.getDurability() * 10;
-    if (weapon.getEnchantment().includes("火焰") || weapon.getEnchantment().includes("冰霜")) {
+    if (
+      weapon.getEnchantment().includes("火焰") ||
+      weapon.getEnchantment().includes("冰霜")
+    ) {
       value *= 1.8;
     }
     this.totalValue += value;
@@ -955,13 +808,13 @@ class ValueAppraiser {
     console.log(`附魔效果: ${weapon.getEnchantment()}`);
     console.log(`耐久度: ${weapon.getDurability()}`);
     console.log(`鑑定價值: ${Math.floor(value)} 金幣`);
-    console.log();
+    console.log("");
   }
 
   showTotalValue() {
     console.log(`=== ${this.name} 的鑑定總結 ===`);
     console.log(`總估值: ${this.totalValue} 金幣`);
-    console.log();
+    console.log("");
   }
 
   getTotalValue() {
@@ -991,53 +844,55 @@ class QualityAppraiser {
   appraiseCraftsman(craftsman) {
     this.itemsAppraised++;
     const quality = this.evaluateCraftsmanQuality(craftsman);
-    
+
     console.log("=== 品質鑑定：矮人工匠 ===");
     console.log(`姓名: ${craftsman.getName()}`);
     console.log(`技藝品質: ${quality}`);
     console.log(`推薦用途: ${this.getRecommendedUse(craftsman)}`);
-    console.log();
+    console.log("");
   }
 
   appraiseCrystal(crystal) {
     this.itemsAppraised++;
     const quality = this.evaluateCrystalQuality(crystal);
-    
+
     console.log("=== 品質鑑定：魔法水晶 ===");
     console.log(`名稱: ${crystal.getName()}`);
     console.log(`品質等級: ${quality}`);
     console.log(`建議用途: ${this.getRecommendedUseForCrystal(crystal)}`);
     console.log(`安全性評估: ${this.getSafetyRating(crystal)}`);
-    console.log();
+    console.log("");
   }
 
   appraisePlant(plant) {
     this.itemsAppraised++;
     const quality = this.evaluatePlantQuality(plant);
-    
+
     console.log("=== 品質鑑定：珍稀植物 ===");
     console.log(`名稱: ${plant.getName()}`);
     console.log(`品質等級: ${quality}`);
     console.log(`最佳採收期: 滿月之夜`);
     console.log(`保存建議: 陰涼乾燥處保存，避免陽光直射`);
-    console.log();
+    console.log("");
   }
 
   appraiseWeapon(weapon) {
     this.itemsAppraised++;
     const quality = this.evaluateWeaponQuality(weapon);
-    
+
     console.log("=== 品質鑑定：附魔武器 ===");
     console.log(`名稱: ${weapon.getName()}`);
     console.log(`品質等級: ${quality}`);
     console.log(`戰鬥效能: ${this.getCombatEffectiveness(weapon)}`);
     console.log(`維護建議: ${this.getMaintenanceAdvice(weapon)}`);
-    console.log();
+    console.log("");
   }
 
   // 輔助方法
   evaluateCraftsmanQuality(craftsman) {
-    const score = craftsman.getCraftingLevel() + Math.floor(craftsman.getYearsOfExperience() / 10);
+    const score =
+      craftsman.getCraftingLevel() +
+      Math.floor(craftsman.getYearsOfExperience() / 10);
     if (score >= 15) return "大師級";
     if (score >= 10) return "專家級";
     if (score >= 5) return "熟練級";
@@ -1045,7 +900,8 @@ class QualityAppraiser {
   }
 
   evaluateCrystalQuality(crystal) {
-    if (crystal.getMagicPower() >= 80 && crystal.getRarity() === "傳說") return "完美品質";
+    if (crystal.getMagicPower() >= 80 && crystal.getRarity() === "傳說")
+      return "完美品質";
     if (crystal.getMagicPower() >= 60) return "優秀品質";
     if (crystal.getMagicPower() >= 40) return "良好品質";
     return "普通品質";
@@ -1067,7 +923,9 @@ class QualityAppraiser {
   }
 
   getRecommendedUse(craftsman) {
-    return craftsman.getSpecialty() === "傳奇工藝" ? "皇室御用工匠" : "城鎮工坊負責人";
+    return craftsman.getSpecialty() === "傳奇工藝"
+      ? "皇室御用工匠"
+      : "城鎮工坊負責人";
   }
 
   getRecommendedUseForCrystal(crystal) {
@@ -1091,7 +949,7 @@ class QualityAppraiser {
   showAppraisalSummary() {
     console.log(`=== ${this.name} 的鑑定總結 ===`);
     console.log(`已鑑定物品數量: ${this.itemsAppraised}`);
-    console.log();
+    console.log("");
   }
 }
 
@@ -1137,7 +995,7 @@ class MagicMarket {
     this.items.forEach((item, index) => {
       console.log(`${index + 1}. ${item.getName()}`);
     });
-    console.log();
+    console.log("");
   }
 
   getItemCount() {
@@ -1174,7 +1032,7 @@ market.addItem(plant2);
 market.addItem(weapon1);
 market.addItem(weapon2);
 
-console.log();
+console.log("");
 market.showMarketInfo();
 
 // 創建不同類型的鑑定師
@@ -1198,7 +1056,6 @@ console.log("感謝世界巡遊鑑定師的專業服務！");
 
 /** output
 === 歡迎來到世界巡遊鑑定師的魔法市集 ===
-
 新商品入場: 鋼鬍巴林
 新商品入場: 銅斧索林
 新商品入場: 暴風之眼
@@ -1224,13 +1081,12 @@ console.log("感謝世界巡遊鑑定師的專業服務！");
 ========================================
 === 歡迎鑑定師來到 奇蹟商會 ===
 開始鑑定市集中的所有物品...
-
 === 價值鑑定：矮人工匠 ===
 姓名: 鋼鬍巴林
 工藝等級: 12
 專精: 傳奇工藝
 經驗年數: 150
-鑑定價值: 30000 金幣
+鑑定價值: 17400 金幣
 
 === 價值鑑定：矮人工匠 ===
 姓名: 銅斧索林
@@ -1277,7 +1133,7 @@ console.log("感謝世界巡遊鑑定師的專業服務！");
 攻擊力: 95
 附魔效果: 火焰傷害+30
 耐久度: 85
-鑑定價值: 9390 金幣
+鑑定價值: 10080 金幣
 
 === 價值鑑定：附魔武器 ===
 名稱: 冰霜匕首
@@ -1285,17 +1141,16 @@ console.log("感謝世界巡遊鑑定師的專業服務！");
 攻擊力: 60
 附魔效果: 冰霜減速
 耐久度: 70
-鑑定價值: 6140 金幣
+鑑定價值: 6660 金幣
 
 === 黃金眼商人 的鑑定總結 ===
-總估值: 75930 金幣
+總估值: 64540 金幣
 
 ========================================
 第二輪：品質鑑定
 ========================================
 === 歡迎鑑定師來到 奇蹟商會 ===
 開始鑑定市集中的所有物品...
-
 === 品質鑑定：矮人工匠 ===
 姓名: 鋼鬍巴林
 技藝品質: 大師級
@@ -1332,8 +1187,8 @@ console.log("感謝世界巡遊鑑定師的專業服務！");
 
 === 品質鑑定：附魔武器 ===
 名稱: 烈焰之劍
-品質等級: 傳說品質
-戰鬥效能: 極高
+品質等級: 史詩品質
+戰鬥效能: 高
 維護建議: 定期保養即可
 
 === 品質鑑定：附魔武器 ===

@@ -68,10 +68,10 @@ public class SharedBookContent implements BookContent {
         return author;
     }
 
-    // 獲取享元物件的記憶體資訊
+    // 獲取享元物件的記憶體資訊 ex: @6e2c634b
     @Override
     public String toString() {
-        return String.format("SharedBookContent[%s by %s] @%s", 
+        return String.format("SharedBookContent[%s by %s] @%s",
                            title, author, Integer.toHexString(hashCode()));
     }
 }
@@ -99,7 +99,7 @@ public class BookFlyweightFactory {
     // 獲取或創建書籍內容享元
     public BookContent getBookContent(String title, String author, String content, String isbn) {
         String key = isbn; // 使用 ISBN 作為唯一標識
-        
+
         BookContent bookContent = bookPool.get(key);
         if (bookContent == null) {
             System.out.println("圖書館員創建新的書籍享元: " + title);
@@ -108,7 +108,7 @@ public class BookFlyweightFactory {
         } else {
             System.out.println("圖書館員重用現有享元: " + title);
         }
-        
+
         return bookContent;
     }
 
@@ -237,7 +237,7 @@ public class MagicLibrary {
         System.out.println("=== 魔法圖書館統計 ===");
         System.out.println("註冊讀者數: " + readers.size());
         System.out.println("書籍類型數: " + librarian.getBookTypeCount());
-        
+
         // 統計當前借閱情況
         int borrowingCount = 0;
         for (Reader reader : readers) {
@@ -246,8 +246,8 @@ public class MagicLibrary {
             }
         }
         System.out.println("當前借閱人數: " + borrowingCount);
-        System.out.println("享元記憶體節省比例: " + 
-                         String.format("%.1f%%", 
+        System.out.println("享元記憶體節省比例: " +
+                         String.format("%.1f%%",
                          (1.0 - (double)librarian.getBookTypeCount() / Math.max(borrowingCount, 1)) * 100));
         System.out.println();
     }
@@ -283,15 +283,15 @@ public class FlyweightPatternExample {
         // 多個讀者借閱同一本書（《哈利波特》）
         System.out.println("=== 多位讀者借閱同一本書 ===");
         BookContent harryPotter1 = library.provideBook(
-            "哈利波特：神秘的魔法石", "J.K.羅琳", 
+            "哈利波特：神秘的魔法石", "J.K.羅琳",
             harryPotterContent[0], "978-0-7475-3269-9");
-        
+
         BookContent harryPotter2 = library.provideBook(
-            "哈利波特：神秘的魔法石", "J.K.羅琳", 
+            "哈利波特：神秘的魔法石", "J.K.羅琳",
             harryPotterContent[0], "978-0-7475-3269-9");
-        
+
         BookContent harryPotter3 = library.provideBook(
-            "哈利波特：神秘的魔法石", "J.K.羅琳", 
+            "哈利波特：神秘的魔法石", "J.K.羅琳",
             harryPotterContent[0], "978-0-7475-3269-9");
 
         // 驗證是否為同一個享元物件
@@ -324,9 +324,9 @@ public class FlyweightPatternExample {
 
         // 黛安娜借閱不同的書
         BookContent lordOfRings = library.provideBook(
-            "魔戒：魔戒現身", "J.R.R.托爾金", 
+            "魔戒：魔戒現身", "J.R.R.托爾金",
             lordOfRingsContent[0], "978-0-544-00341-5");
-        
+
         diana.borrowBook(lordOfRings, "2024-01-18");
         diana.makeNotes("中土世界的設定很宏大");
         diana.turnToPage("第25頁");
@@ -408,8 +408,8 @@ public class FlyweightPatternExample {
 
         === 圖書館享元池狀態 ===
         目前共有 2 種書籍內容享元
-        ISBN: 978-0-7475-3269-9 -> SharedBookContent[哈利波特：神秘的魔法石 by J.K.羅琳] @1a2b3c4d
-        ISBN: 978-0-544-00341-5 -> SharedBookContent[魔戒：魔戒現身 by J.R.R.托爾金] @2b3c4d5e
+        ISBN: 978-0-7475-3269-9 -> SharedBookContent[哈利波特：神秘的魔法石 by J.K.羅琳] @6e2c634b
+        ISBN: 978-0-544-00341-5 -> SharedBookContent[魔戒：魔戒現身 by J.R.R.托爾金] @7e6cbb7a
         */
     }
 }
@@ -438,7 +438,7 @@ class SharedBookContent {
       console.log(`個人筆記: ${personalNotes}`);
     }
     console.log(`書籍內容: ${this.content}`);
-    console.log();
+    console.log("");
   }
 
   getTitle() {
@@ -469,7 +469,7 @@ class BookFlyweightFactory {
   // 獲取或創建書籍內容享元
   getBookContent(title, author, content, isbn) {
     const key = isbn; // 使用 ISBN 作為唯一標識
-    
+
     let bookContent = BookFlyweightFactory.bookPool.get(key);
     if (!bookContent) {
       console.log(`圖書館員創建新的書籍享元: ${title}`);
@@ -478,18 +478,20 @@ class BookFlyweightFactory {
     } else {
       console.log(`圖書館員重用現有享元: ${title}`);
     }
-    
+
     return bookContent;
   }
 
   // 顯示享元池狀態
   showLibraryStatus() {
     console.log("=== 圖書館享元池狀態 ===");
-    console.log(`目前共有 ${BookFlyweightFactory.bookPool.size} 種書籍內容享元`);
+    console.log(
+      `目前共有 ${BookFlyweightFactory.bookPool.size} 種書籍內容享元`
+    );
     for (const [isbn, bookContent] of BookFlyweightFactory.bookPool) {
       console.log(`ISBN: ${isbn} -> ${bookContent}`);
     }
-    console.log();
+    console.log("");
   }
 
   // 清空享元池
@@ -541,7 +543,11 @@ class Reader {
   // 閱讀當前書籍
   readCurrentBook() {
     if (this.currentBook) {
-      this.currentBook.displayContent(this.name, this.currentPage, this.personalNotes);
+      this.currentBook.displayContent(
+        this.name,
+        this.currentPage,
+        this.personalNotes
+      );
     } else {
       console.log(`${this.name} 目前沒有借閱任何書籍`);
     }
@@ -590,14 +596,20 @@ class MagicLibrary {
     console.log("=== 魔法圖書館統計 ===");
     console.log(`註冊讀者數: ${this.readers.length}`);
     console.log(`書籍類型數: ${this.librarian.getBookTypeCount()}`);
-    
+
     // 統計當前借閱情況
-    const borrowingCount = this.readers.filter(reader => reader.getCurrentBook() !== null).length;
+    const borrowingCount = this.readers.filter(
+      (reader) => reader.getCurrentBook() !== null
+    ).length;
     console.log(`當前借閱人數: ${borrowingCount}`);
-    console.log(`享元記憶體節省比例: ${
-      ((1.0 - this.librarian.getBookTypeCount() / Math.max(borrowingCount, 1)) * 100).toFixed(1)
-    }%`);
-    console.log();
+    console.log(
+      `享元記憶體節省比例: ${(
+        (1.0 -
+          this.librarian.getBookTypeCount() / Math.max(borrowingCount, 1)) *
+        100
+      ).toFixed(1)}%`
+    );
+    console.log("");
   }
 }
 
@@ -617,31 +629,46 @@ library.registerReader(alice);
 library.registerReader(bob);
 library.registerReader(charlie);
 library.registerReader(diana);
-console.log();
+console.log("");
 
 // 準備書籍資料
-const harryPotterContent = ["第一章：大難不死的男孩...", "第二章：消失的玻璃..."];
-const lordOfRingsContent = ["第一章：期待已久的宴會...", "第二章：過往的陰影..."];
+const harryPotterContent = [
+  "第一章：大難不死的男孩...",
+  "第二章：消失的玻璃...",
+];
+const lordOfRingsContent = [
+  "第一章：期待已久的宴會...",
+  "第二章：過往的陰影...",
+];
 
 // 多個讀者借閱同一本書（《哈利波特》）
 console.log("=== 多位讀者借閱同一本書 ===");
 const harryPotter1 = library.provideBook(
-  "哈利波特：神秘的魔法石", "J.K.羅琳", 
-  harryPotterContent[0], "978-0-7475-3269-9");
+  "哈利波特：神秘的魔法石",
+  "J.K.羅琳",
+  harryPotterContent[0],
+  "978-0-7475-3269-9"
+);
 
 const harryPotter2 = library.provideBook(
-  "哈利波特：神秘的魔法石", "J.K.羅琳", 
-  harryPotterContent[0], "978-0-7475-3269-9");
+  "哈利波特：神秘的魔法石",
+  "J.K.羅琳",
+  harryPotterContent[0],
+  "978-0-7475-3269-9"
+);
 
 const harryPotter3 = library.provideBook(
-  "哈利波特：神秘的魔法石", "J.K.羅琳", 
-  harryPotterContent[0], "978-0-7475-3269-9");
+  "哈利波特：神秘的魔法石",
+  "J.K.羅琳",
+  harryPotterContent[0],
+  "978-0-7475-3269-9"
+);
 
 // 驗證是否為同一個享元物件
 console.log("享元物件比較:");
 console.log(`harryPotter1 === harryPotter2: ${harryPotter1 === harryPotter2}`);
 console.log(`harryPotter2 === harryPotter3: ${harryPotter2 === harryPotter3}`);
-console.log();
+console.log("");
 
 // 讀者借閱和閱讀
 alice.borrowBook(harryPotter1, "2024-01-15");
@@ -658,7 +685,7 @@ bob.turnToPage("第30頁");
 charlie.makeNotes("魁地奇運動很有趣");
 charlie.turnToPage("第80頁");
 
-console.log();
+console.log("");
 
 // 顯示各自的閱讀狀態
 alice.readCurrentBook();
@@ -667,8 +694,11 @@ charlie.readCurrentBook();
 
 // 黛安娜借閱不同的書
 const lordOfRings = library.provideBook(
-  "魔戒：魔戒現身", "J.R.R.托爾金", 
-  lordOfRingsContent[0], "978-0-544-00341-5");
+  "魔戒：魔戒現身",
+  "J.R.R.托爾金",
+  lordOfRingsContent[0],
+  "978-0-544-00341-5"
+);
 
 diana.borrowBook(lordOfRings, "2024-01-18");
 diana.makeNotes("中土世界的設定很宏大");
@@ -770,14 +800,31 @@ Flyweight 設計模式就像我們故事中的節儉圖書館員，透過`共享
 **使用時機：**
 
 - 系統中存在大量相似物件（ex: 遊戲中的樹木、子彈物件）
-- 物件的多數狀態可以設為外部狀態（ex: 文字編輯器中的字符格式）
-- 記憶體成本是系統瓶頸（ex: 移動裝置應用程式）
-- 物件群組可以用較少的共享物件替代（ex: 圖形系統中的圖案）
-
+- 物件的多數狀態可以設為外部狀態（ex: 文字編輯器中的字串格式）
+<!-- - 記憶體成本是系統瓶頸（ex: 移動裝置應用程式）
+- 物件群組可以用較少的共享物件替代（ex: 圖形系統中的圖案） -->
+<!-- 
 **注意事項：**
+
 
 - 需要明確區分內部狀態和外部狀態，設計時要謹慎考慮
 - 外部狀態的傳遞可能增加程式碼複雜度
 - 享元工廠需要管理物件生命週期，避免記憶體洩漏
 - 適合用於物件數量龐大且狀態相似度高的場景
-- 執行時間可能因為外部狀態的計算而增加
+- 執行時間可能因為外部狀態的計算而增加 -->
+
+## 補充
+
+```java
+// 享元模式:根據不同的內部狀態,可能有多個享元實例
+BookFlyweightFactory factory = BookFlyweightFactory.getInstance();
+BookContent book1 = factory.getBookContent("書名1", "作者1", "內容1", "ISBN1"); // 實例1
+BookContent book2 = factory.getBookContent("書名2", "作者2", "內容2", "ISBN2"); // 實例2
+BookContent book3 = factory.getBookContent("書名1", "作者1", "內容1", "ISBN1"); // 重用實例1
+// book1 == book3 (true), 但 book1 != book2
+
+// 單例模式:全域只有一個實例
+BookFlyweightFactory factory1 = BookFlyweightFactory.getInstance(); // 唯一實例
+BookFlyweightFactory factory2 = BookFlyweightFactory.getInstance(); // 相同實例
+// factory1 == factory2 (true)
+```

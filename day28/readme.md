@@ -46,13 +46,13 @@
 **表示法**：生命線上的細長矩形
 
 ```text
- 物件A
-    │
-    ├──┐  ← 啟動框（物件正在執行）
-    │  │
-    │  │
-    ├──┘
-    │
+物件A
+    │
+    ├──┐  ← 啟動框
+    │  │
+    │<-- 內部方法
+    └──┤
+       │
 ```
 
 ---
@@ -67,7 +67,7 @@
 | -------------- | ---------------------- | ------------------ |
 | **同步訊息**   | `───>`                 | 發送者等待回應     |
 | **非同步訊息** | `---->`                | 發送者不等待回應   |
-| **回傳訊息**   | `<---`                 | 回傳結果           |
+| **回傳訊息**   | `<- - -`                 | 回傳結果           |
 | **自我呼叫**   | `⟲`                    | 物件呼叫自己的方法 |
 | **建立訊息**   | `---->` + `<<create>>` | 建立新物件         |
 | **銷毀訊息**   | `----> ✕`              | 銷毀物件           |
@@ -143,203 +143,6 @@
   │          │           │                │              │
 ```
 
-<!-- ### Java 程式碼實作
-
-#### User 實體類別
-
-```java
-public class User {
-    private Long id;
-    private String username;
-    private String password;
-    private String email;
-
-    public User(Long id, String username, String password, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    // Getters
-    public Long getId() { return id; }
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public String getEmail() { return email; }
-}
-```
-
-#### UserRepository 資料存取層
-
-```java
-public class UserRepository {
-    private Database database;
-
-    public UserRepository() {
-        this.database = new Database();
-    }
-
-    public User findByUsername(String username) {
-        System.out.println("UserRepository: 查詢使用者 " + username);
-        return database.query("SELECT * FROM users WHERE username = ?", username);
-    }
-}
-```
-
-#### Database 資料庫類別
-
-```java
-public class Database {
-    public User query(String sql, String username) {
-        System.out.println("Database: 執行查詢 - " + sql);
-        System.out.println("Database: 參數 - " + username);
-
-        // 模擬資料庫查詢
-        if ("john".equals(username)) {
-            return new User(1L, "john", "password123", "john@example.com");
-        }
-        return null;
-    }
-}
-```
-
-#### AuthService 認證服務
-
-```java
-public class AuthService {
-    private UserRepository userRepository;
-
-    public AuthService() {
-        this.userRepository = new UserRepository();
-    }
-
-    public boolean authenticate(String username, String password) {
-        System.out.println("AuthService: 開始驗證使用者 " + username);
-
-        // 從資料庫查詢使用者
-        User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            System.out.println("AuthService: 使用者不存在");
-            return false;
-        }
-
-        // 驗證密碼
-        return verifyPassword(user, password);
-    }
-
-    private boolean verifyPassword(User user, String password) {
-        System.out.println("AuthService: 驗證密碼...");
-        boolean isValid = user.getPassword().equals(password);
-
-        if (isValid) {
-            System.out.println("AuthService: 密碼正確");
-        } else {
-            System.out.println("AuthService: 密碼錯誤");
-        }
-
-        return isValid;
-    }
-}
-```
-
-#### LoginUI 使用者介面
-
-```java
-public class LoginUI {
-    private AuthService authService;
-
-    public LoginUI() {
-        this.authService = new AuthService();
-    }
-
-    public void login(String username, String password) {
-        System.out.println("=== 使用者輸入帳號密碼 ===");
-        System.out.println("帳號: " + username);
-        System.out.println("密碼: " + "***");
-        System.out.println();
-
-        boolean success = authService.authenticate(username, password);
-
-        if (success) {
-            displayHomePage();
-        } else {
-            displayError();
-        }
-    }
-
-    private void displayHomePage() {
-        System.out.println();
-        System.out.println("=== 登入成功！顯示首頁 ===");
-        System.out.println("歡迎回來！");
-    }
-
-    private void displayError() {
-        System.out.println();
-        System.out.println("=== 登入失敗 ===");
-        System.out.println("帳號或密碼錯誤");
-    }
-}
-```
-
-#### 測試程式
-
-```java
-public class LoginExample {
-    public static void main(String[] args) {
-        LoginUI loginUI = new LoginUI();
-
-        // 測試成功登入
-        System.out.println("【測試 1：正確的帳號密碼】");
-        loginUI.login("john", "password123");
-
-        System.out.println("\n" + "=".repeat(50) + "\n");
-
-        // 測試登入失敗
-        System.out.println("【測試 2：錯誤的密碼】");
-        loginUI.login("john", "wrongpassword");
-    }
-}
-```
-
-#### 執行結果
-
-```text
-【測試 1：正確的帳號密碼】
-=== 使用者輸入帳號密碼 ===
-帳號: john
-密碼: ***
-
-AuthService: 開始驗證使用者 john
-UserRepository: 查詢使用者 john
-Database: 執行查詢 - SELECT * FROM users WHERE username = ?
-Database: 參數 - john
-AuthService: 驗證密碼...
-AuthService: 密碼正確
-
-=== 登入成功！顯示首頁 ===
-歡迎回來！
-
-==================================================
-
-【測試 2：錯誤的密碼】
-=== 使用者輸入帳號密碼 ===
-帳號: john
-密碼: ***
-
-AuthService: 開始驗證使用者 john
-UserRepository: 查詢使用者 john
-Database: 執行查詢 - SELECT * FROM users WHERE username = ?
-Database: 參數 - john
-AuthService: 驗證密碼...
-AuthService: 密碼錯誤
-
-=== 登入失敗 ===
-帳號或密碼錯誤
-```
-
---- -->
-
 ## 範例 2：線上購物結帳流程
 
 ### 系統需求
@@ -401,103 +204,6 @@ AuthService: 密碼錯誤
  │<─顯示成功│          │             │              │                 │               │
  │       │            │             │              │                 │               │
 ```
-
-<!-- ### 簡化的 Java 實作
-
-```java
-// OrderService
-public class OrderService {
-    private CartService cartService;
-    private PaymentService paymentService;
-    private InventoryService inventoryService;
-    private EmailService emailService;
-
-    public OrderService() {
-        this.cartService = new CartService();
-        this.paymentService = new PaymentService();
-        this.inventoryService = new InventoryService();
-        this.emailService = new EmailService();
-    }
-
-    public Order processCheckout(String userId, String paymentMethod) {
-        System.out.println("OrderService: 開始處理結帳...");
-
-        // 取得購物車
-        Cart cart = cartService.getCart(userId);
-
-        // 檢查購物車
-        if (cart.isEmpty()) {
-            throw new RuntimeException("購物車是空的！");
-        }
-
-        // 計算總金額
-        double totalAmount = calculateTotal(cart);
-        System.out.println("OrderService: 計算總金額 = $" + totalAmount);
-
-        // 處理付款
-        boolean paymentSuccess = paymentService.processPayment(userId, totalAmount, paymentMethod);
-
-        if (!paymentSuccess) {
-            throw new RuntimeException("付款失敗！");
-        }
-
-        // 建立訂單
-        Order order = createOrder(userId, cart, totalAmount);
-        System.out.println("OrderService: 訂單建立成功，訂單號：" + order.getOrderId());
-
-        // 更新庫存
-        inventoryService.updateInventory(cart);
-
-        // 發送確認郵件
-        emailService.sendOrderConfirmation(userId, order);
-
-        return order;
-    }
-
-    private double calculateTotal(Cart cart) {
-        return cart.getItems().stream()
-            .mapToDouble(item -> item.getPrice() * item.getQuantity())
-            .sum();
-    }
-
-    private Order createOrder(String userId, Cart cart, double totalAmount) {
-        String orderId = "ORD-" + System.currentTimeMillis();
-        return new Order(orderId, userId, cart, totalAmount);
-    }
-}
-
-// CheckoutUI
-public class CheckoutUI {
-    private OrderService orderService;
-
-    public CheckoutUI() {
-        this.orderService = new OrderService();
-    }
-
-    public void checkout(String userId, String paymentMethod) {
-        System.out.println("=== 顧客發起結帳 ===\n");
-
-        try {
-            Order order = orderService.processCheckout(userId, paymentMethod);
-            displaySuccess(order);
-        } catch (Exception e) {
-            displayError(e.getMessage());
-        }
-    }
-
-    private void displaySuccess(Order order) {
-        System.out.println("\n=== 結帳成功！ ===");
-        System.out.println("訂單編號：" + order.getOrderId());
-        System.out.println("訂單金額：$" + order.getTotalAmount());
-        System.out.println("感謝您的購買！");
-    }
-
-    private void displayError(String message) {
-        System.out.println("\n=== 結帳失敗 ===");
-        System.out.println("錯誤：" + message);
-    }
-}
-``` -->
 
 ---
 
